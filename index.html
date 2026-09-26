@@ -8,45 +8,191 @@
 
 <title>The December Box</title>
 
-css/style.css
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+:root{
+    --cream:#F5F0E7;
+    --green:#2C4233;
+    --gold:#C7A55C;
+    --black:#111111;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--cream);
+    color:var(--black);
+    font-family:'Lato',sans-serif;
+    line-height:1.6;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:white;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo img{
+    height:85px;
+    transition:0.3s;
+}
+
+.logo img:hover{
+    transform:scale(1.03);
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:var(--black);
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:var(--green);
+}
+
+.hero{
+    min-height:75vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px 8%;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    margin-bottom:30px;
+    font-size:1.2rem;
+}
+
+.btn{
+    display:inline-block;
+    background:var(--green);
+    color:white;
+    padding:14px 28px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+.btn:hover{
+    background:var(--gold);
+    color:black;
+}
+
+section{
+    padding:60px 8%;
+}
+
+h1,h2,h3{
+    font-family:'Playfair Display',serif;
+    margin-bottom:15px;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    background:var(--green);
+    color:white;
+    margin-top:50px;
+}
+
+@media(max-width:768px){
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:2.5rem;
+    }
+}
+</style>
+
 </head>
 <body>
 
 <header>
-    <a href="index.html" class="logo">
-        images/logo.png
-    </a>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="hampers.html">Hampers</a>
-        <a href="our-story.html">Our Story</a>
-        <a href="returns.html">Returns</a>
-        <a href="contact.html">Contact</a>
-        <a href="basket.html">Basket</a>
-    </nav>
+<a href="index.html" class="logo">
+    images/logo.png
+</a>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="hampers.html">Hampers</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="returns.html">Returns</a>
+    <a href="contact.html">Contact</a>
+    <a href="basket.html">Basket</a>
+</nav>
+
 </header>
 
-<section>
-<h1>Unique Christmas Hampers For Every Christmas Personality</h1>
-<p>Thoughtfully curated festive gift boxes delivered across the UK.</p>
-<a href="hampers.html">Shop Hampers</a>
+<section class="hero">
+
+<div>
+
+<h1>The December Box</h1>
+
+<p>
+Luxury Christmas hampers inspired by festive traditions,
+cosy nights, Christmas films and unforgettable gifting experiences.
+</p>
+
+<a href="hampers.html" class="btn">
+Shop Hampers
+</a>
+
+</div>
+
 </section>
 
 <section>
-<h2>Why The December Box?</h2>
-<ul>
-<li>Premium Christmas Hampers</li>
-<li>UK Delivery</li>
-<li>Thoughtful Gift Experiences</li>
-<li>Beautiful Packaging</li>
-</ul>
+
+<h2>Why Choose The December Box?</h2>
+
+<p>
+Every hamper is carefully curated and beautifully packaged
+to create a Christmas experience rather than just a gift.
+</p>
+
 </section>
 
 <footer>
-<p>&copy; The December Box</p>
+    <p>&copy; 2026 The December Box. All Rights Reserved.</p>
 </footer>
 
-js/basket.jsscript>
+<script src="js/basket.js"></script>
 </body>
 </html>
