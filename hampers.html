@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hampers</title>
+css/style.css
+</head>
+<body>
+
+<header>
+<a href="index.html">
+images/logo.png
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hampers.html">Hampers</a>
+<a href="our-story.html">Our Story</a>
+<a href="returns.html">Returns</a>
+<a href="contact.html">Contact</a>
+<a href="basket.html">Basket</a>
+</nav>
+</header>
+
+<h1>Our Hampers</h1>
+
+<div>
+<h2>The Cosy Christmas Box</h2>
+<p>£39.99</p>
+<button onclick="addToBasket('The Cosy Christmas Box',39.99)">Add To Basket</button>
+</div>
+
+<div>
+<h2>British Mum Survival Box</h2>
+<p>£49.99</p>
+<button onclick="addToBasket('British Mum Survival Box',49.99)">Add To Basket</button>
+</div>
+
+<div>
+<h2>Christmas Movie Night Box</h2>
+<p>£44.99</p>
+<button onclick="addToBasket('Christmas Movie Night Box',44.99)">Add To Basket</button>
+</div>
+
+<div>
+<h2>Yorkshire Christmas Box</h2>
+<p>£54.99</p>
+<button onclick="addToBasket('Yorkshire Christmas Box',54.99)">Add To Basket</button>
+</div>
+
+<div>
+<h2>Christmas Gamer Box</h2>
+<p>£49.99</p>
+<button onclick="addToBasket('Christmas Gamer Box',49.99)">Add To Basket</button>
+</div>
+
+<div>
+<h2>Christmas Market Box</h2>
+<p>£59.99</p>
+<button onclick="addToBasket('Christmas Market Box',59.99)">Add To Basket</button>
+</div>
+
+<script>
+function addToBasket(name,price){
+
+let basket=JSON.parse(localStorage.getItem("basket")) || [];
+
+basket.push({
+name:name,
+price:price
+});
+
+localStorage.setItem("basket",JSON.stringify(basket));
+
+alert(name + " added to basket.");
+}
+</script>
+
+</body>
+</html>
