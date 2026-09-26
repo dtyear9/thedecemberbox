@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basket</title>
+css/style.css
+</head>
+<body>
+
+<header>
+<a href="index.html">
+images/logo.png
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="hampers.html">Hampers</a>
+<a href="our-story.html">Our Story</a>
+<a href="returns.html">Returns</a>
+<a href="contact.html">Contact</a>
+<a href="basket.html">Basket</a>
+</nav>
+</header>
+
+<h1>Your Basket</h1>
+
+<div id="basketItems"></div>
+
+<h2>Total: £<span id="total">0.00</span></h2>
+
+<button onclick="clearBasket()">Empty Basket</button>
+
+<script>
+
+let basket = JSON.parse(localStorage.getItem("basket")) || [];
+
+let output = "";
+let total = 0;
+
+basket.forEach((item,index)=>{
+output += `
+<p>
+${item.name} - £${item.price}
+<button onclick="removeItem(${index})">Remove</button>
+</p>
+`;
+total += item.price;
+});
+
+document.getElementById("basketItems").innerHTML = output;
+document.getElementById("total").innerText = total.toFixed(2);
+
+function removeItem(index){
+
+basket.splice(index,1);
+
+localStorage.setItem(
+"basket",
+JSON.stringify(basket)
+);
+
+location.reload();
+}
+
+function clearBasket(){
+
+localStorage.removeItem("basket");
+
+location.reload();
+}
+
+</script>
+
+</body>
+</html>
