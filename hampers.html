@@ -6,9 +6,10 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Our Hampers | The December Box</title>
+<title>Christmas Hampers | The December Box</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
 
 :root{
@@ -45,12 +46,7 @@ header{
 }
 
 .logo img{
-    height:85px;
-    transition:0.3s;
-}
-
-.logo img:hover{
-    transform:scale(1.03);
+    height:90px;
 }
 
 nav{
@@ -59,102 +55,54 @@ nav{
 }
 
 nav a{
-    color:var(--black);
     text-decoration:none;
+    color:var(--black);
     font-weight:600;
-    transition:0.3s;
 }
 
 nav a:hover{
     color:var(--green);
 }
 
-.hero{
-    min-height:75vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.page-title{
     text-align:center;
-    padding:50px 8%;
-}
-
-.hero h1{
-    font-family:'Playfair Display',serif;
+    color:var(--green);
     font-size:4rem;
-    margin-bottom:20px;
+    margin-top:60px;
 }
 
-.hero p{
-    max-width:650px;
-    margin:auto;
-    margin-bottom:30px;
-    font-size:1.2rem;
-}
-
-button{
-    cursor:pointer;
-    width:100%;
-    border:none;
-    background:linear-gradient(
-        135deg,
-        var(--green),
-        #375442
-    );
-    color:white;
-    padding:14px 20px;
-    border-radius:50px;
-    font-weight:700;
-    font-size:0.95rem;
-    letter-spacing:0.5px;
-    transition:all 0.3s ease;
-    box-shadow:0 6px 15px rgba(44,66,51,0.25);
-}
-
-button:hover{
-    transform:translateY(-3px);
-    background:linear-gradient(
-        135deg,
-        var(--gold),
-        #d9b874
-    );
-    color:var(--black);
-    box-shadow:0 10px 25px rgba(199,165,92,0.35);
-}
-
-button
-
-section{
-    padding:60px 8%;
-}
-
-h1,h2,h3{
-    font-family:'Playfair Display',serif;
-    margin-bottom:15px;
+.page-subtitle{
+    text-align:center;
+    max-width:700px;
+    margin:20px auto 50px;
+    font-size:1.1rem;
 }
 
 .products{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+    padding:0 8% 80px;
 }
 
 .product-card{
     background:white;
-    padding:25px;
-    border-radius:16px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
-    transition:0.3s;
+    border-radius:18px;
     overflow:hidden;
     position:relative;
+    box-shadow:0 12px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 .product-card::before{
     content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:5px;
+    display:block;
+    height:6px;
     background:linear-gradient(
         90deg,
         var(--gold),
@@ -162,83 +110,82 @@ h1,h2,h3{
     );
 }
 
-.product-card:hover{
-    transform:translateY(-8px);
+.hamper-image{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    display:block;
 }
 
-.product-card h2{
+.product-content{
+    padding:25px;
+}
+
+.product-content h2{
+    color:var(--green);
     margin-bottom:10px;
+    font-family:'Playfair Display',serif;
+}
+
+.product-content p{
+    margin-bottom:15px;
 }
 
 .price{
+    display:inline-block;
+    padding:8px 16px;
+    background:#f4efe3;
+    border-radius:50px;
     color:var(--green);
-    font-size:1.4rem;
+    font-size:1.3rem;
     font-weight:700;
-    margin:15px 0;
+    margin-bottom:20px;
+}
+
+.badge{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:var(--gold);
+    color:black;
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:0.8rem;
+    font-weight:700;
 }
 
 button{
-    cursor:pointer;
+    width:100%;
     border:none;
-    background:var(--green);
+    cursor:pointer;
+    padding:15px;
+    border-radius:50px;
+    font-size:1rem;
+    font-weight:700;
+    background:linear-gradient(
+        135deg,
+        var(--green),
+        #3f5a49
+    );
     color:white;
-    padding:12px 18px;
-    border-radius:6px;
     transition:0.3s;
 }
 
 button:hover{
-    background:var(--gold);
+    transform:translateY(-3px);
+    background:linear-gradient(
+        135deg,
+        var(--gold),
+        #d9ba77
+    );
     color:black;
-}
-
-form{
-    max-width:700px;
-}
-
-input,
-textarea{
-    width:100%;
-    padding:15px;
-    margin-bottom:20px;
-    border:1px solid #ddd;
-    border-radius:6px;
-}
-
-textarea{
-    min-height:180px;
-}
-
-.basket-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:white;
-    padding:20px;
-    margin-bottom:15px;
-    border-radius:8px;
-}
-
-.total-box{
-    margin-top:30px;
-    background:white;
-    padding:25px;
-    border-radius:8px;
 }
 
 footer{
     text-align:center;
-    padding:40px;
     background:var(--green);
     color:white;
-    margin-top:50px;
-}
-
-.email-box{
-    background:white;
-    padding:20px;
-    border-left:5px solid var(--gold);
-    margin-bottom:30px;
+    padding:40px;
 }
 
 @media(max-width:768px){
@@ -253,84 +200,138 @@ footer{
         justify-content:center;
     }
 
-    .hero h1{
-        font-size:2.5rem;
+    .page-title{
+        font-size:2.8rem;
     }
+
 }
+
 </style>
 </head>
+
 <body>
 
 <header>
+
 <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="The December Box Logo">
+images/logo.png
 </a>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="hampers.html">Hampers</a>
-    <a href="our-story.html">Our Story</a>
-    <a href="returns.html">Returns</a>
-    <a href="contact.html">Contact</a>
-    <a href="basket.html">Basket</a>
+<a href="index.html">Home</a>
+<a href="hampers.html">Hampers</a>
+<a href="our-story.html">Our Story</a>
+<a href="returns.html">Returns</a>
+<a href="contact.html">Contact</a>
+<a href="basket.html">Basket</a>
 </nav>
+
 </header>
 
-<section>
-<h1>Christmas Hampers</h1>
+<h1 class="page-title">
+Christmas Hampers
+</h1>
+
+<p class="page-subtitle">
+Luxury Christmas hampers designed around festive traditions,
+cosy evenings and unforgettable gifting experiences.
+</p>
 
 <div class="products">
 
 <div class="product-card">
+<div class="badge">BEST SELLER</div>
+images/cosy-box.jpg
+<div class="product-content">
 <h2>The Cosy Christmas Box</h2>
-<p>Luxury blanket, Christmas mug, hot chocolate and festive treats.</p>
-<p class="price">£39.99</p>
+<p>Blanket, hot chocolate, marshmallows, candle and Christmas mug.</p>
+<div class="price">£39.99</div>
 <button onclick="addToBasket('The Cosy Christmas Box',39.99)">Add To Basket</button>
 </div>
+</div>
 
 <div class="product-card">
+<div class="badge">MOST GIFTED</div>
+images/mum-box.jpg
+<div class="product-content">
 <h2>British Mum Survival Box</h2>
-<p>Tea, biscuits, bath treats, chocolate and festive socks.</p>
-<p class="price">£49.99</p>
+<p>Luxury tea, biscuits, bath treats, chocolates and cosy socks.</p>
+<div class="price">£49.99</div>
 <button onclick="addToBasket('British Mum Survival Box',49.99)">Add To Basket</button>
 </div>
+</div>
 
 <div class="product-card">
+<div class="badge">FAVOURITE</div>
+images/movie-box.jpg
+<div class="product-content">
 <h2>Christmas Movie Night Box</h2>
-<p>Popcorn, sweets, hot chocolate and movie-night comforts.</p>
-<p class="price">£44.99</p>
+<p>Popcorn, sweets, hot chocolate and festive movie treats.</p>
+<div class="price">£44.99</div>
 <button onclick="addToBasket('Christmas Movie Night Box',44.99)">Add To Basket</button>
 </div>
+</div>
 
 <div class="product-card">
+<div class="badge">YORKSHIRE</div>
+images/yorkshire-box.jpg
+<div class="product-content">
 <h2>Yorkshire Christmas Box</h2>
-<p>Yorkshire tea, festive goodies and local-inspired favourites.</p>
-<p class="price">£54.99</p>
+<p>Yorkshire Tea and local festive favourites.</p>
+<div class="price">£54.99</div>
 <button onclick="addToBasket('Yorkshire Christmas Box',54.99)">Add To Basket</button>
 </div>
+</div>
 
 <div class="product-card">
+<div class="badge">NEW</div>
+images/gamer-box.jpg
+<div class="product-content">
 <h2>Christmas Gamer Box</h2>
-<p>Gaming snacks, drinks and festive gaming accessories.</p>
-<p class="price">£49.99</p>
+<p>Gaming snacks, drinks and festive gaming goodies.</p>
+<div class="price">£49.99</div>
 <button onclick="addToBasket('Christmas Gamer Box',49.99)">Add To Basket</button>
 </div>
+</div>
 
 <div class="product-card">
+<div class="badge">PREMIUM</div>
+images/market-box.jpg
+<div class="product-content">
 <h2>Christmas Market Box</h2>
 <p>Inspired by traditional European Christmas markets.</p>
-<p class="price">£59.99</p>
+<div class="price">£59.99</div>
 <button onclick="addToBasket('Christmas Market Box',59.99)">Add To Basket</button>
 </div>
+</div>
 
 </div>
-</section>
 
 <footer>
-<p>&copy; The December Box</p>
+<p>&copy; 2026 The December Box. All Rights Reserved.</p>
 </footer>
 
-<script src="js/basket.js"></script>
+<script>
+
+function addToBasket(name,price){
+
+let basket =
+JSON.parse(localStorage.getItem("basket")) || [];
+
+basket.push({
+name:name,
+price:price
+});
+
+localStorage.setItem(
+"basket",
+JSON.stringify(basket)
+);
+
+alert("✅ " + name + " added to basket!");
+}
+
+</script>
 
 </body>
 </html>
