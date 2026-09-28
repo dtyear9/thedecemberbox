@@ -1,101 +1,11 @@
-function addToBasket(name, price){
-
-    let basket =
-    JSON.parse(localStorage.getItem("basket")) || [];
-
-    basket.push({
-        name:name,
-        price:price
-    });
-
-    localStorage.setItem(
-        "basket",
-        JSON.stringify(basket)
-    );
-
-    alert(name + " has been added to your basket.");
-}
-
-function getBasket(){
-
-    return JSON.parse(
-        localStorage.getItem("basket")
-    ) || [];
-}
-
-function displayBasket(){
-
-    let basket = getBasket();
-
-    let basketContainer =
-    document.getElementById("basketItems");
-
-    let totalElement =
-    document.getElementById("total");
-
-    if(!basketContainer) return;
-
-    let html = "";
-    let total = 0;
-
-    basket.forEach((item,index)=>{
-
-        total += item.price;
-
-        html += `
-        <div class="basket-item">
-
-            <div>
-                <h3>${item.name}</h3>
-                <p>£${item.price.toFixed(2)}</p>
-            </div>
-
-            <button onclick="removeItem(${index})">
-                Remove
-            </button>
-
-        </div>
-        `;
-    });
-
-    basketContainer.innerHTML = html;
-
-    if(totalElement){
-        totalElement.innerText =
-        total.toFixed(2);
-    }
-}
-
-function removeItem(index){
-
-    let basket = getBasket();
-
-    basket.splice(index,1);
-
-    localStorage.setItem(
-        "basket",
-        JSON.stringify(basket)
-    );
-
-    displayBasket();
-}
-
-function clearBasket(){
-
-    localStorage.removeItem("basket");
-
-    displayBasket();
-
-    let totalElement =
-    document.getElementById("total");
-
-    if(totalElement){
-        totalElement.innerText =
-        "0.00";
-    }
-}
-
-document.addEventListener(
-    "DOMContentLoaded",
-    displayBasket
-);
+const PRODUCTS={cosy:['The Cosy Christmas Box',39.99],mum:['British Mum Survival Box',49.99],movie:['Christmas Movie Night Box',44.99],yorkshire:['Yorkshire Christmas Box',54.99],gamer:['Christmas Gamer Box',49.99],market:['Christmas Market Box',59.99]};
+const getBasket=()=>{try{return JSON.parse(localStorage.getItem('tdb-basket'))||[]}catch{return[]}};
+const saveBasket=b=>{localStorage.setItem('tdb-basket',JSON.stringify(b));updateCount()};
+function updateCount(){document.querySelectorAll('[data-basket-count]').forEach(x=>x.textContent=getBasket().reduce((n,i)=>n+i.qty,0))}
+function addToBasket(id){const p=PRODUCTS[id];if(!p)return;const b=getBasket(),i=b.find(x=>x.id===id);i?i.qty++:b.push({id,name:p[0],price:p[1],qty:1});saveBasket(b);toast(p[0]+' added to your basket.')}
+function changeQty(id,d){const b=getBasket(),i=b.find(x=>x.id===id);if(!i)return;i.qty+=d;saveBasket(b.filter(x=>x.qty>0));renderBasket()}
+function removeItem(id){saveBasket(getBasket().filter(x=>x.id!==id));renderBasket()}
+function money(n){return new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(n)}
+function toast(t){const x=document.querySelector('.toast');if(!x)return;x.textContent=t;x.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove('show'),2400)}
+function renderBasket(){const root=document.querySelector('#basket-content');if(!root)return;const b=getBasket();if(!b.length){root.innerHTML='<div class="basket-empty"><div class="gift-icon" style="font-size:4rem">ð</div><h2>Your basket is empty</h2><p class="small" style="margin:10px 0 20px">Choose a hamper to get started.</p><a class="btn btn-dark" href="hampers.html">Browse hampers</a></div>';return}const total=b.reduce((s,i)=>s+i.price*i.qty,0);root.innerHTML='<div class="basket-list">'+b.map(i=>`<article class="basket-item"><div><h3>${i.name}</h3><p class="small">${money(i.price)} each</p></div><div class="qty"><button onclick="changeQty('${i.id}',-1)">â</button><strong>${i.qty}</strong><button onclick="changeQty('${i.id}',1)">+</button></div><div><strong>${money(i.price*i.qty)}</strong><br><button class="remove-btn" onclick="removeItem('${i.id}')">Remove</button></div></article>`).join('')+'</div><div class="basket-summary"><div><p>Basket total</p><div class="total">'+money(total)+'</div></div><a class="btn btn-primary" href="contact.html?order=true">Continue to enquiry</a></div><p class="small" style="margin-top:12px">No payment is taken on this demo site.</p>'}
+document.addEventListener('DOMContentLoaded',()=>{updateCount();renderBasket();const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav-links');if(t)t.onclick=()=>n.classList.toggle('open');const f=document.querySelector('#contact-form');if(f)f.onsubmit=e=>{if(f.action.includes('YOUR_FORM_ID')){e.preventDefault();document.querySelector('#form-status').innerHTML='<div class="notice">Add your Formspree form ID to this form before publishing.</div>'}}});
