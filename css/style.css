@@ -33,6 +33,39 @@ header{
     z-index:1000;
 }
 
+/* The December Box logo */
+.brand-logo {
+  display: block;
+  width: 150px;
+  height: auto;
+  max-height: 78px;
+  object-fit: contain;
+}
+
+.footer-brand-logo {
+  display: block;
+  width: 165px;
+  height: auto;
+  max-height: 90px;
+  object-fit: contain;
+  margin-bottom: 14px;
+}
+
+/* Mobile logo sizing */
+@media (max-width: 620px) {
+  .brand-logo {
+    width: 118px;
+    max-height: 64px;
+  }
+
+  .footer-brand-logo {
+    width: 135px;
+    max-height: 78px;
+  }
+}
+
+
+
 .logo img{
     height:90px;
 }
