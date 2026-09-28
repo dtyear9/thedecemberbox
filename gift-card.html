@@ -144,12 +144,33 @@ button:hover{background:#234f36;transform:translateY(-1px)}
 <div class="toast"></div>
 <script src="js/basket.js"></script>
 <script>
-document.getElementById("giftForm").addEventListener("submit", function(e){
+async function checkGiftCard(code) {
+  const res = await fetch('gift-cards.csv');
+  const text = await res.text();
+  const rows = text.split('\n').map(r => r.split(','));
+
+  // Find row where Code matches
+  const found = rows.find(row => row[0].trim() === code.trim());
+
+  if(found) {
+    const balance = found[3]; // Balance column
+    const active = found[4]; // YES/NO
+
+    if(active === 'YES') {
+      document.getElementById('success').style.display = 'block';
+      document.querySelector('.balance').textContent = '£' + balance + '.00';
+      document.getElementById('giftForm').style.display = 'none';
+    }
+  } else {
+    alert('Code not found');
+  }
+}
+
+document.getElementById('giftForm').addEventListener('submit', (e) => {
   e.preventDefault();
-  if(email.value.trim() && cardNumber.value.trim() && pin.value.trim()){
-    giftForm.style.display="none";
-    success.style.display="block";
-    localStorage.setItem('tdb_gift_balance','25.00');
+  checkGiftCard(document.getElementById('cardNumber').value);
+});
+</script>
   }
 });
 </script>
