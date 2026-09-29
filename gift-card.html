@@ -1,120 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gift Cards - The December Box</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Gift Cards - The December Box">
+<title>Gift Cards | The December Box</title>
+<link rel="stylesheet" href="css/style.css">
 <style>
-  :root { --green:#173b2b; --cream:#f7f2e8; --gold:#c9a45b; }
-  body { background:var(--cream); color:var(--green); font-family:Georgia, serif; max-width:600px; margin:0 auto; padding:20px; }
- .card-box { background:white; border:2px solid var(--green); border-radius:16px; padding:24px; margin:20px 0; }
- .toggle { display:flex; gap:10px; margin:15px 0; }
- .toggle button { flex:1; padding:12px; border:2px solid var(--green); background:white; cursor:pointer; border-radius:8px; font-weight:bold; }
- .toggle button.active { background:var(--green); color:var(--cream); }
- .price-line { display:flex; justify-content:space-between; margin:6px 0; }
- .total { font-size:22px; font-weight:bold; border-top:1px solid var(--gold); padding-top:10px; margin-top:10px; }
-  input, select { width:100%; padding:12px; border:1px solid var(--gold); border-radius:8px; margin:8px 0; box-sizing:border-box; }
- .btn { background:var(--green); color:var(--cream); padding:14px; border:none; width:100%; border-radius:8px; font-size:16px; cursor:pointer; margin-top:10px; }
- .btn:hover { background:#122e22; }
- .success { background:var(--green); color:var(--cream); padding:16px; border-radius:8px; display:none; }
+  /* Gift card specific */
+  .gift-card-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px; }
+  @media(max-width:800px){ .gift-card-grid{grid-template-columns:1fr;} }
+  .gc-card { background:#fff; border:1px solid #e8e0d0; border-radius:16px; padding:24px; }
+  .gc-card h2 { margin-top:0; }
+  .toggle { display:flex; gap:10px; margin:12px 0; }
+  .toggle button { flex:1; padding:12px 8px; border:2px solid #173b2b; background:#fff; border-radius:10px; cursor:pointer; font-weight:700; color:#173b2b; line-height:1.2; }
+  .toggle button.active { background:#173b2b; color:#f7f2e8; }
+  .price-line { display:flex; justify-content:space-between; padding:6px 0; }
+  .total-line { display:flex; justify-content:space-between; font-weight:800; font-size:20px; border-top:2px solid #c9a45b; margin-top:10px; padding-top:12px; }
+  .gc-input, .gc-select { width:100%; padding:12px; border:1px solid #c9a45b; border-radius:8px; margin:8px 0; box-sizing:border-box; font-family:inherit; }
+  .gc-success { background:#173b2b; color:#f7f2e8; padding:16px; border-radius:10px; display:none; margin-top:16px; }
+  .badge-fee { background:#f7f2e8; border:1px dashed #c9a45b; padding:8px 12px; border-radius:8px; font-size:13px; margin:10px 0; }
 </style>
 </head>
 <body>
+<header class="site-header">
+<div class="container navbar">
+<a class="brand" href="index.html" aria-label="The December Box home"><img class="brand-logo" src="assets/logo.jpg" alt="The December Box"></a>
+<button class="menu-toggle">☰</button>
+<nav class="nav-links">
+<a class="" href="index.html">Home</a>
+<a class="" href="hampers.html">Hampers</a>
+<a class="" href="our-story.html">Our Story</a>
+<a class="" href="returns.html">Returns</a>
+<a class="" href="contact.html">Contact</a>
+<a class="active" href="gift-card.html">Gift Cards</a>
+<a class="basket-link" href="basket.html">Basket <span class="basket-count" data-basket-count>0</span></a>
+</nav>
+</div>
+</header>
 
-<h1 style="color:var(--green)">The December Box<br>Gift Cards</h1>
+<main>
+<section class="hero">
+<div class="container hero-grid">
+<div>
+<span class="eyebrow">New • Personalise your calendar</span>
+<h1>Gift Cards & Sticker Sheets</h1>
+<p>Let them choose their own December. Send a digital PDF instantly or a luxe printed card in the post. Every card covers our fees so you keep 100% of the gift value.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="#buy">Buy a gift card</a><a class="btn btn-outline" href="#redeem">Redeem a card</a></div>
+</div>
+<div class="hero-art"><div><div class="gift-icon">🎁</div><h2>Wrapped with care.</h2><p>Digital +£1 • Posted +£2.50</p></div></div>
+</div>
+</section>
 
-<!-- BUY SECTION -->
-<div class="card-box">
-<h2>Buy a Gift Card</h2>
-<label>Choose value</label>
-<select id="faceValue">
-  <option value="15">£15</option>
-  <option value="25" selected>£25</option>
-  <option value="50">£50</option>
-  <option value="100">£100</option>
+<section class="section">
+<div class="container">
+<div class="gift-card-grid">
+
+<!-- BUY -->
+<div class="gc-card" id="buy">
+<h3>🎀 Buy a Gift Card</h3>
+<label>Card value</label>
+<select id="faceValue" class="gc-select">
+  <option value="15">£15 Gift Card</option>
+  <option value="25" selected>£25 Gift Card</option>
+  <option value="50">£50 Gift Card</option>
+  <option value="100">£100 Gift Card</option>
 </select>
 
-<label>Delivery</label>
+<label>Delivery type</label>
 <div class="toggle">
-  <button id="btnDigital" class="active" onclick="setType('digital')">📧 Digital +£1<br><small>emailed as PDF</small></button>
-  <button id="btnPosted" onclick="setType('posted')">💌 Posted +£2.50<br><small>luxe card + envelope</small></button>
+  <button id="btnDigital" class="active" onclick="setType('digital')">📧 Digital<br><small>+£1.00 e-delivery</small></button>
+  <button id="btnPosted" onclick="setType('posted')">💌 Posted<br><small>+£2.50 print & post</small></button>
 </div>
 
-<div id="breakdown">
-  <div class="price-line"><span>Gift card value</span><span id="valText">£25.00</span></div>
-  <div class="price-line"><span id="feeLabel">Digital delivery</span><span id="feeText">£1.00</span></div>
-  <div class="price-line total"><span>You pay</span><span id="totalText">£26.00</span></div>
-</div>
+<div class="badge-fee" id="feeExplain">Digital covers Stripe (1.5% + 20p) + PDF. They get the full £25 to spend.</div>
 
-<input type="email" id="buyerEmail" placeholder="Recipient email (for digital) or your email">
-<button class="btn" onclick="buyCard()">Buy Now</button>
-<p style="font-size:12px; margin-top:10px;">You'll get a code like TDB-DIG-001. Add it to your <b>gift-cards.xlsx</b> and re-export <b>gift-cards.csv</b>.</p>
-</div>
-
-<!-- REDEEM SECTION -->
-<div class="card-box">
-<h2>Redeem a Gift Card</h2>
-<form id="giftForm">
-  <input type="text" id="cardNumber" placeholder="Enter code e.g. TDB-DIG-001" required>
-  <button class="btn" type="submit">Check Balance</button>
-</form>
-<div id="success" class="success">
-  <p>Code: <span id="codeOut"></span></p>
-  <p class="balance" style="font-size:28px; font-weight:bold;"></p>
-  <p>Available to spend on any December Box hamper</p>
-</div>
-</div>
-
-<script>
-let deliveryType = 'digital';
-const fees = { digital: 1.00, posted: 2.50 };
-
-function setType(type) {
-  deliveryType = type;
-  document.getElementById('btnDigital').classList.toggle('active', type==='digital');
-  document.getElementById('btnPosted').classList.toggle('active', type==='posted');
-  updatePrice();
-}
-
-function updatePrice() {
-  const face = parseFloat(document.getElementById('faceValue').value);
-  const fee = fees[deliveryType];
-  document.getElementById('valText').textContent = '£'+face.toFixed(2);
-  document.getElementById('feeLabel').textContent = deliveryType==='digital'? 'Digital delivery' : 'Print & post';
-  document.getElementById('feeText').textContent = '£'+fee.toFixed(2);
-  document.getElementById('totalText').textContent = '£'+(face+fee).toFixed(2);
-}
-
-document.getElementById('faceValue').addEventListener('change', updatePrice);
-updatePrice();
-
-function buyCard() {
-  const face = document.getElementById('faceValue').value;
-  const total = (parseFloat(face) + fees[deliveryType]).toFixed(2);
-  const email = document.getElementById('buyerEmail').value;
-  alert(`Order: £${face} ${deliveryType} card. Total £${total}. \\n\\nNext: Add a row to your gift-cards.xlsx:\\nCode: TDB-${deliveryType==='digital'?'DIG':'POST'}-XXX | Email: ${email} | Face: ${face} | Fee: ${fees[deliveryType]} | Total: ${total} | Balance: ${face} | YES`);
-}
-
-// REDEEM from gift-cards.csv
-document.getElementById('giftForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const code = document.getElementById('cardNumber').value.trim();
-  try {
-    const res = await fetch('gift-cards.csv');
-    const text = await res.text();
-    const rows = text.split('\n').map(r => r.split(','));
-    const found = rows.find(row => row[0] && row[0].trim() === code);
-    if(found) {
-      const balance = found[5] || found[3];
-      const active = found[6] || found[4];
-      if(active && active.toUpperCase().includes('YES')) {
-        document.getElementById('codeOut').textContent = code;
-        document.querySelector('.balance').textContent = '£' + balance + '.00 balance';
-        document.getElementById('success').style.display = 'block';
-      } else { alert('Card inactive'); }
-    } else { alert('Code not found'); }
-  } catch(err) { alert('Could not load gift-cards.csv - make sure file is in same folder'); }
-});
-</script>
-</body>
-</html>
+<div class="price-line"><span>Gift card value</span><span id="valText
